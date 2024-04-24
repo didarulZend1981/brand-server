@@ -32,10 +32,21 @@ async function run() {
 
     app.post('/coffee', async (req, res) => {
       const newCoffee = req.body;
-      console.log(newCoffee);//check data insert
+      console.log(newCoffee);
+      //check data insert
       const result = await coffeeCollection.insertOne(newCoffee);
       res.send(result);
-  })
+    })
+
+
+    //All data read API
+    app.get('/coffee', async (req, res) => {
+      const cursor = coffeeCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
