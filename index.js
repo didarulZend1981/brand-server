@@ -28,13 +28,13 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    // const coffeeCollection = client.db('coffeeDB').collection('coffee');
+    const coffeeCollection = client.db('coffeeDB').collection('coffee');
 
     app.post('/coffee', async (req, res) => {
       const newCoffee = req.body;
       console.log(newCoffee);//check data insert
-      // const result = await coffeeCollection.insertOne(newCoffee);
-      // res.send(result);
+      const result = await coffeeCollection.insertOne(newCoffee);
+      res.send(result);
   })
 
     console.log(
